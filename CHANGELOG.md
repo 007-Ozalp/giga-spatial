@@ -6,6 +6,11 @@ All notable changes to this project will be documented in this file.
 
 ### Added
 
+-   **GloFAS operational forecasts by country (`gigaspatial/handlers/cems/glofas_forecast.py`)**
+    -   `GlofasForecastHandler` downloads `cems-glofas-forecast` for one country. The administrative boundary, including islands and other parts, selects native grid cells. Values are not resampled.
+    -   The forecast variables are river discharge in the last 24 hours, runoff water equivalent, snow depth water equivalent, and soil wetness index. Each variable keeps the reference dates the EWDS catalogue actually publishes. Control forecasts and perturbed ensemble members, lead times, and the file's variable names and units are kept.
+    -   A run reads the catalogue first and requests a reference date only when it is missing, short of the published lead times, or still the open tail after the catalogue update time changes. Repeated runs do not download stored data again.
+    -   Static GloFAS v4.0 auxiliary maps (upstream area, elevation, local drain direction, and flood thresholds for return periods 1.5 through 500 years, plus `mu` and `sigma`) are stored separately under `bronze/cems/glofas/auxiliary` and can be loaded without a forecast download. They apply to operational forecasts from 2023-07-26 and are not paired with `version_2_1`, `version_3_1`, or earlier operational runs. Set `EWDS_API_KEY` and accept the CEMS-FLOODS licence before a forecast download.
 -   **Optional `excel` extra (`pyproject.toml`, `gigaspatial/core/io/readers.py`, `gigaspatial/core/io/writers.py`)**
     -   Added `giga-spatial[excel]` (`openpyxl>=3.1.0`, `xlrd>=2.0.0`, also included in `giga-spatial[all]`) for reading `.xlsx`/`.xls` files and writing `.xlsx` files.
     -   `read_dataset` and `write_dataset` now raise an `ImportError` with `pip install 'giga-spatial[excel]'` when the required Excel engine is missing.

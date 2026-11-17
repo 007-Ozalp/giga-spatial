@@ -7,6 +7,13 @@ from gigaspatial.handlers.cems.flood_hazard import (
     GlofasFloodHazardHandler,
     JRCFloodHazardHandler,
 )
+from gigaspatial.handlers.cems.glofas_forecast import (
+    GlofasForecastConfig,
+    GlofasForecastDownloader,
+    GlofasForecastHandler,
+    GlofasForecastReader,
+    GlofasForecastResolveOptions,
+)
 
 __all__ = [
     "CEMSFloodHazardConfig",
@@ -15,5 +22,10 @@ __all__ = [
     "CEMSFloodHazardHandler",
     "CEMSFloodHazardResolveOptions",
     "GlofasFloodHazardHandler",
+    "GlofasForecastConfig",
+    "GlofasForecastDownloader",
+    "GlofasForecastHandler",
+    "GlofasForecastReader",
+    "GlofasForecastResolveOptions",
     "JRCFloodHazardHandler",
 ]
